@@ -5,11 +5,10 @@
 }
 
 html, body {
-  font-family: serif;
+  background: rgba(153, 119, 153, 0.4666666667);
   height: 100%;
-}
-html h1, body h1 {
-  font-family: Caveat;
+  color: #353746;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 html section, body section {
   padding: 16px;
@@ -18,6 +17,9 @@ html section, body section {
 body {
   display: flex;
   flex-direction: column;
+  /* ================================================== */
+  /* ================= 画面遷移アニメーション ================= */
+  /* ================================================== */
 }
 body::before, body::after {
   content: "";
@@ -28,42 +30,37 @@ body::before, body::after {
   height: 100vh; /*画面の高さ*/
   transform-origin: right; /*動く向き*/
 }
-body::before {
-  background: #89c997; /*濃い緑*/
-  z-index: 1000; /*最前面*/
-  -webkit-animation: right-move 0.8s forwards;
-          animation: right-move 0.8s forwards;
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
-}
 body::after {
-  background: #bee0ce; /*薄い緑*/
-  z-index: 999; /*1つ後ろ*/
-  -webkit-animation: right-move 1.2s forwards;
-          animation: right-move 1.2s forwards;
-  -webkit-animation-delay: 2s;
-          animation-delay: 2s; /*上の背景が動き終わるまで遅延*/
+  background: #fff;
+  opacity: 0.8;
+  transition: rotate(80deg);
+  z-index: 999;
+  -webkit-animation: right-move 400ms forwards;
+          animation: right-move 400ms forwards;
+  -webkit-animation-delay: 800ms;
+          animation-delay: 800ms;
 }
-
-/***背景が動くアニメーション***/
 @-webkit-keyframes right-move {
   0% {
-    transform: scaleX(1); /*MAX幅*/
+    transform: scaleX(1);
   }
   100% {
-    transform: scaleX(0); /*幅0*/
-    visibility: hidden; /*非表示に*/
+    transform: scaleX(0);
+    visibility: hidden;
   }
 }
 @keyframes right-move {
   0% {
-    transform: scaleX(1); /*MAX幅*/
+    transform: scaleX(1);
   }
   100% {
-    transform: scaleX(0); /*幅0*/
-    visibility: hidden; /*非表示に*/
+    transform: scaleX(0);
+    visibility: hidden;
   }
 }
+
+/* ================================================== */
+/* ==================== ヘッダーCSS ==================== */
 header .hamburger [type=checkbox]:checked,
 header .hamburger [type=checkbox]:not(:checked) {
   position: absolute;
@@ -291,24 +288,25 @@ header .title a {
   color: #000;
 }
 
-.typing-animation {
-  width: 20ch; /*文字の長さ*/
-  border-right: 2px solid #565656; /*点滅バー*/
-  overflow: hidden; /*必須*/
-  white-space: nowrap; /*必須*/
-  color: #00aec9;
+.top {
+  margin-top: 160px;
+}
+.top .typing-animation {
+  width: 18ch; /*文字の長さ*/
+  border-right: 2px solid #565656;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #34465D;
   font-size: 24px;
   font-weight: bold;
-  -webkit-animation: typing 3s steps(24), blink 0.4s step-end infinite alternate;
-          animation: typing 3s steps(24), blink 0.4s step-end infinite alternate; /*アニメーション関連*/
+  -webkit-animation: typing 4s steps(16), blink 0.4s step-end infinite alternate;
+          animation: typing 4s steps(16), blink 0.4s step-end infinite alternate;
 }
-
 @-webkit-keyframes typing {
   0% {
     width: 0;
   }
 }
-
 @keyframes typing {
   0% {
     width: 0;
@@ -316,7 +314,7 @@ header .title a {
 }
 @-webkit-keyframes blink {
   50% {
-    border-color: transparent; /*点滅風に見せる*/
+    border-color: transparent;
   }
   100% {
     border-color: #fff;
@@ -324,12 +322,15 @@ header .title a {
 }
 @keyframes blink {
   50% {
-    border-color: transparent; /*点滅風に見せる*/
+    border-color: transparent;
   }
   100% {
     border-color: #fff;
   }
 }
+
+/* ================================================== */
+/* ==================== フッターCSS ==================== */
 footer {
   margin-top: auto;
   padding: 24px;
@@ -342,9 +343,10 @@ footer .sns .snsItem {
   margin: 0 16px;
 }
 footer .sns .snsItem i {
-  background: #868686;
   border-radius: 60%;
+  background: rgba(153, 119, 153, 0.4666666667);
   padding: 16px;
+  color: #353746;
   font-size: 24px;
 }
 footer .copyright {
@@ -354,6 +356,8 @@ footer .copyright i {
   font-size: 14px;
 }
 
+/* ================================================== */
+/* =================== レスポンシブCSS =================== */
 @media (min-width: 600px) {
   header {
     padding: 24px;
@@ -381,7 +385,12 @@ footer .copyright i {
   }
   header .PCnav ul li a {
     text-decoration: none;
-    color: #868686;
+    color: #353746;
+  }
+  header .PCnav ul li a:hover {
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
   }
   section {
     width: 80%;

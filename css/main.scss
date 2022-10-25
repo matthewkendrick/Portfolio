@@ -3,12 +3,14 @@
   padding: 0;
 }
 
+$fontColor: #34465D;
+$themeColor: #9797;
+
 html, body {
-  font-family: serif;
+  background: $themeColor;
   height: 100%;
-  h1 {
-    font-family: Caveat;
-  }
+  color: #353746;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   section {
     padding: 16px;
   }
@@ -17,6 +19,10 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+
+  /* ================================================== */
+  /* ================= 画面遷移アニメーション ================= */
+
   &::before, &::after {
     content: "";
     position: fixed; /*画面に固定表示*/
@@ -26,30 +32,30 @@ body {
     height: 100vh; /*画面の高さ*/
     transform-origin: right; /*動く向き*/
   }
-  &::before {
-    background: #89c997; /*濃い緑*/
-    z-index: 1000; /*最前面*/
-    animation: right-move 0.8s forwards;
-    animation-delay: 1s;
-  }
   &::after {
-    background: #bee0ce; /*薄い緑*/
-    z-index: 999; /*1つ後ろ*/
-    animation: right-move 1.2s forwards; 
-    animation-delay: 2s; /*上の背景が動き終わるまで遅延*/
+    background: #fff;
+    opacity: 0.8;
+    transition: rotate(80deg);
+    z-index: 999;
+    animation: right-move 400ms forwards; 
+    animation-delay: 800ms;
   }
+  @keyframes right-move{
+    0%{
+      transform: scaleX(1);
+    }
+    100% {
+      transform: scaleX(0);
+      visibility: hidden;
+    }
+  }
+
+  /* ================================================== */
+
 }
 
-/***背景が動くアニメーション***/
-@keyframes right-move{
-  0%{
-    transform: scaleX(1); /*MAX幅*/
-  }
-  100% {
-    transform: scaleX(0); /*幅0*/
-    visibility: hidden; /*非表示に*/
-  }
-}
+/* ================================================== */
+/* ==================== ヘッダーCSS ==================== */
 
 header {
   .hamburger {
@@ -214,7 +220,7 @@ header {
       }
     }
 
-    @keyframes border-transform{
+    @keyframes border-transform {
         0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; } 
       14% { border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%; } 
       28% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; } 
@@ -270,29 +276,35 @@ header {
   }
 }
 
-.typing-animation {
-	width: 20ch;	/*文字の長さ*/
-	border-right: 2px solid #565656;	/*点滅バー*/
-	overflow: hidden;	/*必須*/
-	white-space: nowrap;	/*必須*/
-	color:#00aec9;
-	font-size: 24px;
-	font-weight: bold;
-	animation: typing 3s steps(24), blink .4s step-end infinite alternate;	/*アニメーション関連*/
-}
-@keyframes typing {
-	0% {
-		width: 0;
-	}
-}
-@keyframes blink {
-	50% {
-		border-color: transparent;		/*点滅風に見せる*/
-	}
-  100% {
-    border-color: #fff;
+.top {
+  margin-top: 160px;
+  .typing-animation {
+    width: 18ch;	/*文字の長さ*/
+    border-right: 2px solid #565656;
+    overflow: hidden;
+    white-space: nowrap;
+    color:#34465D;
+    font-size: 24px;
+    font-weight: bold;
+    animation: typing 4s steps(16), blink .4s step-end infinite alternate;
+  }
+  @keyframes typing {
+    0% {
+      width: 0;
+    }
+  }
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+    100% {
+      border-color: #fff;
+    }
   }
 }
+
+/* ================================================== */
+/* ==================== フッターCSS ==================== */
 
 footer {
   margin-top: auto;
@@ -303,9 +315,10 @@ footer {
     .snsItem {
       margin: 0 16px;
       i {
-        background: #868686;
         border-radius: 60%;
+        background: #9797;
         padding: 16px;
+        color: #353746;
         font-size: 24px;
       }
     }
@@ -317,6 +330,9 @@ footer {
     }
   }
 }
+
+/* ================================================== */
+/* =================== レスポンシブCSS =================== */
 
 @media (min-width: 600px) {
   header {
@@ -340,7 +356,13 @@ footer {
           list-style: none;
           a {
             text-decoration: none;
-            color: #868686;
+            color: #353746;
+            &:hover {
+              // TODO(ホバー時のレイアウトを考察する)
+              padding: 16px;
+              background: rgba($color: #fff, $alpha: 0.7);
+              border-radius: 50%;
+            }
           }
         }
       }
