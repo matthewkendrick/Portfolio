@@ -8,7 +8,7 @@ $themeColor: #9797;
 
 html, body {
   background: $themeColor;
-  height: 100%;
+  // height: 100%;
   color: #353746;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   section {
@@ -277,9 +277,9 @@ header {
 }
 
 .top {
-  margin-top: 160px;
+  margin: 160px auto;
   .typing-animation {
-    width: 18ch;	/*文字の長さ*/
+    width: 22ch;	/*文字の長さ*/
     border-right: 2px solid #565656;
     overflow: hidden;
     white-space: nowrap;
@@ -357,11 +357,8 @@ footer {
           a {
             text-decoration: none;
             color: #353746;
-            &:hover {
-              // TODO(ホバー時のレイアウトを考察する)
-              padding: 16px;
-              background: rgba($color: #fff, $alpha: 0.7);
-              border-radius: 50%;
+            &:hover, &:active {
+              color: #fff;
             }
           }
         }

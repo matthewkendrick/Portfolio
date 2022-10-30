@@ -6,7 +6,6 @@
 
 html, body {
   background: rgba(153, 119, 153, 0.4666666667);
-  height: 100%;
   color: #353746;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -289,10 +288,10 @@ header .title a {
 }
 
 .top {
-  margin-top: 160px;
+  margin: 160px auto;
 }
 .top .typing-animation {
-  width: 18ch; /*文字の長さ*/
+  width: 22ch; /*文字の長さ*/
   border-right: 2px solid #565656;
   overflow: hidden;
   white-space: nowrap;
@@ -387,10 +386,8 @@ footer .copyright i {
     text-decoration: none;
     color: #353746;
   }
-  header .PCnav ul li a:hover {
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
+  header .PCnav ul li a:hover, header .PCnav ul li a:active {
+    color: #fff;
   }
   section {
     width: 80%;
